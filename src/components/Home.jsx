@@ -6,7 +6,6 @@ import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import PictureContainer from "./PictureContainer/PictureContainer";
 import AvatarEditorComponent from "./Avtaredition/Avtaredition";
 
 export default function Home() {
@@ -33,7 +32,7 @@ export default function Home() {
         }}
       >
         <Stack spacing={2} useFlexGap sx={{ width: { xs: "100%", sm: "70%" } }}>
-          <Typography
+          {/* <Typography
             component="h1"
             variant="h1"
             sx={{
@@ -43,7 +42,7 @@ export default function Home() {
               textAlign: "center",
             }}
           >
-            Our latest&nbsp;
+            Edit &nbsp;
             <Typography
               component="span"
               variant="h1"
@@ -54,15 +53,16 @@ export default function Home() {
                     : "primary.light",
               }}
             >
-              products
+              Image &nbsp;
             </Typography>
-          </Typography>
-          <Typography variant="body1" textAlign="center" color="text.secondary">
+            Online
+          </Typography> */}
+          {/* <Typography variant="body1" textAlign="center" color="text.secondary">
             Explore our cutting-edge dashboard, delivering high-quality
             solutions tailored to your needs. <br />
             Elevate your experience with top-tier features and services.
-          </Typography>
-          <Stack
+          </Typography> */}
+          {/* <Stack
             direction={{ xs: "column", sm: "row" }}
             alignSelf="center"
             spacing={1}
@@ -84,8 +84,8 @@ export default function Home() {
             <Button variant="contained" color="primary">
               Start now
             </Button>
-          </Stack>
-          <Typography
+          </Stack> */}
+          {/* <Typography
             variant="caption"
             textAlign="center"
             sx={{ opacity: 0.8 }}
@@ -95,9 +95,8 @@ export default function Home() {
               Terms & Conditions
             </Link>
             .
-          </Typography>
+          </Typography> */}
         </Stack>
-        <h1>gfukids</h1>
         <Box
           id="image"
           sx={(theme) => ({
@@ -122,7 +121,7 @@ export default function Home() {
                 : `0 0 24px 12px ${alpha("#033363", 0.2)}`,
           })}
         >
-         <AvatarEditorComponent/>
+          <AvatarEditorComponent />
         </Box>
       </Container>
     </Box>

@@ -1,10 +1,10 @@
 import React from "react";
-import PictureContainer from "../../Component/PictureContainer/PictureContainer";
+// import PictureContainer from "../../Component/PictureContainer/PictureContainer";
 
 function Homepage() {
   return (
     <div>
-      <PictureContainer />
+      {/* <PictureContainer /> */}
     </div>
   );
 }
