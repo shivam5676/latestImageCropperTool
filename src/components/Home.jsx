@@ -2,10 +2,8 @@ import { alpha } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
+
 import AvatarEditorComponent from "./Avtaredition/Avtaredition";
 
 export default function Home() {
@@ -31,72 +29,11 @@ export default function Home() {
           pb: { xs: 8, sm: 12 },
         }}
       >
-        <Stack spacing={2} useFlexGap sx={{ width: { xs: "100%", sm: "70%" } }}>
-          {/* <Typography
-            component="h1"
-            variant="h1"
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              alignSelf: "center",
-              textAlign: "center",
-            }}
-          >
-            Edit &nbsp;
-            <Typography
-              component="span"
-              variant="h1"
-              sx={{
-                color: (theme) =>
-                  theme.palette.mode === "light"
-                    ? "primary.main"
-                    : "primary.light",
-              }}
-            >
-              Image &nbsp;
-            </Typography>
-            Online
-          </Typography> */}
-          {/* <Typography variant="body1" textAlign="center" color="text.secondary">
-            Explore our cutting-edge dashboard, delivering high-quality
-            solutions tailored to your needs. <br />
-            Elevate your experience with top-tier features and services.
-          </Typography> */}
-          {/* <Stack
-            direction={{ xs: "column", sm: "row" }}
-            alignSelf="center"
-            spacing={1}
-            useFlexGap
-            sx={{ pt: 2, width: { xs: "100%", sm: "auto" } }}
-          >
-            <TextField
-              id="outlined-basic"
-              hiddenLabel
-              size="small"
-              variant="outlined"
-              aria-label="Enter your email address"
-              placeholder="Your email address"
-              inputProps={{
-                autocomplete: "off",
-                ariaLabel: "Enter your email address",
-              }}
-            />
-            <Button variant="contained" color="primary">
-              Start now
-            </Button>
-          </Stack> */}
-          {/* <Typography
-            variant="caption"
-            textAlign="center"
-            sx={{ opacity: 0.8 }}
-          >
-            By clicking &quot;Start now&quot; you agree to our&nbsp;
-            <Link href="#" color="primary">
-              Terms & Conditions
-            </Link>
-            .
-          </Typography> */}
-        </Stack>
+        <Stack
+          spacing={2}
+          useFlexGap
+          sx={{ width: { xs: "100%", sm: "70%" } }}
+        ></Stack>
         <Box
           id="image"
           sx={(theme) => ({

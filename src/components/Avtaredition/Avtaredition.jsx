@@ -3,6 +3,8 @@ import AvatarEditor from "react-avatar-editor";
 import { FaArrowRotateRight } from "react-icons/fa6";
 import { FaArrowRotateLeft } from "react-icons/fa6";
 import classes from "./Avtaredition.module.css";
+import Button from "@mui/material/Button";
+import Slider from '@mui/material/Slider';
 const AvatarEditorComponent = () => {
   const [image, setImage] = useState(null);
   const [editedImage, setEditedImage] = useState(null);
@@ -73,12 +75,12 @@ const AvatarEditorComponent = () => {
       )}
       {image && (
         <div>
-          <button onClick={rotateLeftHandler}>
+          <Button variant="contained" onClick={rotateLeftHandler}>
             Rotate 90&deg; left <FaArrowRotateLeft />
-          </button>
-          <button onClick={rotateRightHandler}>
+          </Button>
+          <Button variant="contained" onClick={rotateRightHandler}>
             Rotate 90&deg; right <FaArrowRotateRight />
-          </button>
+          </Button>
         </div>
       )}
       {/* File input to select image */}
@@ -106,23 +108,43 @@ const AvatarEditorComponent = () => {
         {image && (
           <div>
             <label>Scale:</label>
-            <input
+            <Slider
+              defaultValue={1}
+              aria-label="Default"
+              valueLabelDisplay="auto"
+              value={scale}
+              step={0.01}
+              min={1}
+              max={3}
+              onChange={handleScaleChange}
+            />
+            {/* <input
               type="range"
               min="1"
               max="3"
               step="0.01"
               value={scale}
               onChange={handleScaleChange}
-            />
+            /> */}
             <label>Rotate:</label>
-            <input
+            <Slider
+              defaultValue={0}
+              aria-label="default"
+              valueLabelDisplay="auto"
+              value={rotate}
+              step={1}
+              min={0}
+              max={360}
+              onChange={handleRotateChange}
+            />
+            {/* <input
               type="range"
               min="0"
               max="360"
               step="1"
               value={rotate}
               onChange={handleRotateChange}
-            />
+            /> */}
           </div>
         )}
       </div>
