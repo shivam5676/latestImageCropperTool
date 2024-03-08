@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import AvatarEditor from "react-avatar-editor";
 import { FaArrowRotateRight } from "react-icons/fa6";
 import { FaArrowRotateLeft } from "react-icons/fa6";
@@ -7,13 +7,16 @@ import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
 import CardMedia from "@mui/material/CardMedia";
 import Card from "@mui/material/Card";
+import imageContext from "../../store/Image-context";
+import { useNavigate } from "react-router-dom";
 const AvatarEditorComponent = () => {
   const [image, setImage] = useState(null);
   const [editedImage, setEditedImage] = useState(null);
   const [scale, setScale] = useState(1);
   const [rotate, setRotate] = useState(0);
-  const [rotateAngle, setRotateAngle] = useState(0);
   const editorRef = useRef();
+  const imgctx = useContext(imageContext);
+  const navigate = useNavigate();
   // Function to handle file input change
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -31,55 +34,70 @@ const AvatarEditorComponent = () => {
   };
 
   // Function to download edited image
-  const handleDownloadImage = () => {
-    if (editedImage) {
-      // Create a temporary anchor element
-      const link = document.createElement("a");
-      link.href = editedImage;
-      link.download = "edited_image.png"; // Set the download attribute
-      document.body.appendChild(link);
+  // const handleDownloadImage = () => {
+  //   if (editedImage) {
+  //     // Create a temporary anchor element
+  //     const link = document.createElement("a");
+  //     link.href = editedImage;
+  //     link.download = "edited_image.png"; // Set the download attribute
+  //     document.body.appendChild(link);
 
-      // Trigger the download
-      link.click();
+  //     // Trigger the download
+  //     link.click();
 
-      // Clean up
-      document.body.removeChild(link);
-    }
-  };
+  //     // Clean up
+  //     document.body.removeChild(link);
+  //   }
+  // };
   // Function to get edited image
-  const handleGetImage = () => {
-    console.log(editorRef);
+  const handleSaveImage = () => {
     if (editorRef.current) {
       console.log(editorRef.current);
       const canvas = editorRef.current.getImage();
+      console.log(canvas);
       setEditedImage(canvas.toDataURL()); // Convert canvas to data URL
+      imgctx.addToEditedImage(canvas.toDataURL());
+      navigate("/temeditor");
     }
   };
   const rotateLeftHandler = () => {
-    const newRotationAngle = rotateAngle - 90;
-    setRotateAngle(newRotationAngle);
+    // setRotateAngle(newRotationAngle);
+    setRotate((prev) => {
+      if (prev === 0) {
+        return (prev = 360);
+      } else {
+        return prev - 90;
+      }
+    });
   };
   const rotateRightHandler = () => {
-    const newRotationAngle = rotateAngle + 90;
-    setRotateAngle(newRotationAngle);
+    // setRotateAngle(newRotationAngle);
+    setRotate((prev) => {
+      if (prev === 360) {
+        return (prev = 0);
+      } else {
+        return prev + 90;
+      }
+    });
   };
   return (
     <div className={classes.avatar_container}>
       {image && (
-        <AvatarEditor
-          image={image}
-          width={500}
-          height={500}
-          scale={scale}
-          rotate={rotate}
-          onScaleChange={handleScaleChange}
-          onRotateChange={handleRotateChange}
-          style={{ transform: `rotate(${rotateAngle}deg)` }}
-          ref={editorRef}
-        />
+        <Card>
+          <AvatarEditor
+            image={image}
+            width={800}
+            height={500}
+            scale={scale}
+            rotate={rotate}
+            onScaleChange={handleScaleChange}
+            onRotateChange={handleRotateChange}
+            ref={editorRef}
+          />
+        </Card>
       )}
       {image && (
-        <div>
+        <div className={classes.btn_container}>
           <Button variant="contained" onClick={rotateLeftHandler}>
             Rotate 90&deg; left <FaArrowRotateLeft />
           </Button>
@@ -94,7 +112,7 @@ const AvatarEditorComponent = () => {
       {!image && (
         <div>
           <h1>
-            Drop your image here <br /> <strong>or</strong>{" "}
+            Drop your image here <br /> <strong>or</strong>
           </h1>
           <label htmlFor="file-upload">
             <h1 className={classes.uploader}>Click here to Upload an Image</h1>
@@ -102,7 +120,6 @@ const AvatarEditorComponent = () => {
           <input
             id="file-upload"
             type="file"
-            placeholder="Click Here to upload a file"
             onChange={handleFileChange}
             style={{ display: "none" }}
           />
@@ -121,7 +138,7 @@ const AvatarEditorComponent = () => {
               value={scale}
               step={0.01}
               min={1}
-              max={3}
+              max={6}
               onChange={handleScaleChange}
             />
 
@@ -142,22 +159,18 @@ const AvatarEditorComponent = () => {
 
       {/* Buttons to get and download edited image */}
       <div>
-        <button onClick={handleGetImage}>Get Edited Image</button>
-        <button onClick={handleDownloadImage} disabled={!editedImage}>
+        <Button onClick={handleSaveImage} variant="contained" color="success">
+          Save Edited Image
+        </Button>
+
+        {/* <button onClick={handleDownloadImage} disabled={!editedImage}>
           Download Edited Image
-        </button>
+        </button> */}
       </div>
 
       {/* Display the edited image */}
-      {/* {editedImage && (
-        <img
-          src={editedImage}
-          alt="Edited"
-          style={{ maxWidth: "100%", maxHeight: "200px" }}
-        />
-      )} */}
 
-      {editedImage && (
+      {/* {editedImage && (
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             sx={{ height: 140 }}
@@ -166,7 +179,7 @@ const AvatarEditorComponent = () => {
             title="Image Title"
           />
         </Card>
-      )}
+      )} */}
     </div>
   );
 };

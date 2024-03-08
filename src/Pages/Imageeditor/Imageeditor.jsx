@@ -1,10 +1,9 @@
 import { alpha } from "@mui/material";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import AvatarEditorComponent from "../../components/Avtaredition/Avtaredition"
 
-import AvatarEditorComponent from "./Avtaredition/Avtaredition";
-
-export default function Home() {
+export default function Imageeditor() {
   return (
     <Box
       id="hero"
@@ -29,9 +28,8 @@ export default function Home() {
         <Box
           id="image"
           sx={(theme) => ({
-            
             alignSelf: "center",
-            
+
             width: "100%",
             backgroundImage:
               theme.palette.mode === "light"
