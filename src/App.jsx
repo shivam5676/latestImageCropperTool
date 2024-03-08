@@ -6,9 +6,7 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <Fragment>
-      <Header />
       <Home />
-      <Footer/>
     </Fragment>
   );
 }

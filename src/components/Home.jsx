@@ -1,8 +1,6 @@
 import { alpha } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import Stack from "@mui/material/Stack";
 
 import AvatarEditorComponent from "./Avtaredition/Avtaredition";
 
@@ -24,20 +22,14 @@ export default function Home() {
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
           pt: { xs: 14, sm: 20 },
           pb: { xs: 8, sm: 12 },
         }}
       >
-        <Stack
-          spacing={2}
-          useFlexGap
-          sx={{ width: { xs: "100%", sm: "70%" } }}
-        ></Stack>
         <Box
           id="image"
           sx={(theme) => ({
-            mt: { xs: 8, sm: 10 },
+            // mt: { xs: 8, sm: 10 },
             alignSelf: "center",
             height: { xs: 200, sm: 700 },
             width: "100%",

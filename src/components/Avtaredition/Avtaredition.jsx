@@ -4,7 +4,9 @@ import { FaArrowRotateRight } from "react-icons/fa6";
 import { FaArrowRotateLeft } from "react-icons/fa6";
 import classes from "./Avtaredition.module.css";
 import Button from "@mui/material/Button";
-import Slider from '@mui/material/Slider';
+import Slider from "@mui/material/Slider";
+import CardMedia from "@mui/material/CardMedia";
+import Card from "@mui/material/Card";
 const AvatarEditorComponent = () => {
   const [image, setImage] = useState(null);
   const [editedImage, setEditedImage] = useState(null);
@@ -46,7 +48,9 @@ const AvatarEditorComponent = () => {
   };
   // Function to get edited image
   const handleGetImage = () => {
+    console.log(editorRef);
     if (editorRef.current) {
+      console.log(editorRef.current);
       const canvas = editorRef.current.getImage();
       setEditedImage(canvas.toDataURL()); // Convert canvas to data URL
     }
@@ -71,6 +75,7 @@ const AvatarEditorComponent = () => {
           onScaleChange={handleScaleChange}
           onRotateChange={handleRotateChange}
           style={{ transform: `rotate(${rotateAngle}deg)` }}
+          ref={editorRef}
         />
       )}
       {image && (
@@ -83,6 +88,7 @@ const AvatarEditorComponent = () => {
           </Button>
         </div>
       )}
+
       {/* File input to select image */}
 
       {!image && (
@@ -118,14 +124,7 @@ const AvatarEditorComponent = () => {
               max={3}
               onChange={handleScaleChange}
             />
-            {/* <input
-              type="range"
-              min="1"
-              max="3"
-              step="0.01"
-              value={scale}
-              onChange={handleScaleChange}
-            /> */}
+
             <label>Rotate:</label>
             <Slider
               defaultValue={0}
@@ -137,14 +136,6 @@ const AvatarEditorComponent = () => {
               max={360}
               onChange={handleRotateChange}
             />
-            {/* <input
-              type="range"
-              min="0"
-              max="360"
-              step="1"
-              value={rotate}
-              onChange={handleRotateChange}
-            /> */}
           </div>
         )}
       </div>
@@ -158,12 +149,23 @@ const AvatarEditorComponent = () => {
       </div>
 
       {/* Display the edited image */}
-      {editedImage && (
+      {/* {editedImage && (
         <img
           src={editedImage}
           alt="Edited"
           style={{ maxWidth: "100%", maxHeight: "200px" }}
         />
+      )} */}
+
+      {editedImage && (
+        <Card sx={{ maxWidth: 345 }}>
+          <CardMedia
+            sx={{ height: 140 }}
+            className={classes.media}
+            image={editedImage}
+            title="Image Title"
+          />
+        </Card>
       )}
     </div>
   );
