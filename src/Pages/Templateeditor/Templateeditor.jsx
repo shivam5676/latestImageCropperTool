@@ -24,19 +24,24 @@ function Templateeditor(props) {
     console.log(index);
     navigate("/imgeditor");
   };
-
+const border="1px solid grey"
   for (let index = 0; index < totalColumns; index++) {
     newArray.push(
       <div
         key={index}
-        className="cols border d-flex justify-content-center align-items-center fw-bolder"
+        className={`cols  d-flex justify-content-center align-items-center fw-bolder p-5`}
         style={{
-          height: "250px",
+          
+          border: !urlOfArray[index] ? border : "none",
           backgroundImage: `url(${urlOfArray[index]})`,
+          backgroundSize:
+            "100% 100%" /* Cover will ensure the image covers the entire div */,
+          backgroundPosition: "center" /* Center the background image */,
+          backgroundRepeat: "no-repeat" /* Prevent the image from repeating */,
         }}
         onClick={() => getCroppImageHandler(index)}
       >
-        +
+       {!urlOfArray[index] && "+"} 
       </div>
     );
   }
@@ -65,15 +70,14 @@ function Templateeditor(props) {
       style={{ width: "100vw", height: "100vh" }}
     >
       <div
+        className={`row row-cols-${perLineCols} m-3 border`}
         id="collage"
-        className={`row row-cols-${perLineCols}`}
-        style={{ width: "280px" }}
+        style={{ Width: "600px", height: "400px" }}
       >
         {newArray}
       </div>
       <div className="row text-center">
         <div className="btn btn-warning my-5" onClick={handleDownload}>
-          {" "}
           download merge image
         </div>
       </div>
