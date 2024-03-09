@@ -1,20 +1,25 @@
-
-
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, Router } from "react-router-dom";
 import Imageeditor from "./Pages/Imageeditor/Imageeditor";
 import Templateeditor from "./Pages/Templateeditor/Templateeditor";
 import Homepage from "./Pages/Homepage/Homepage";
-// import Imageeditor from "./Pages/Imageeditor/Imageeditor";
-// import Templateeditor from "./Pages/Templateeditor/Templateeditor";
+import Navbar from "./components/Navbar/Navbar";
+import ImageCropper from "./Pages/ImageCropper/ImageCropper";
+import DrawerAppBar from "./components/Appbar/Appbar";
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Homepage/>} />
-      
-      <Route path="/imgeditor" element={<Imageeditor/>}/>
-      <Route path="/temeditor" element={<Templateeditor/>}/>
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    <div>
+      <DrawerAppBar />
+      <Routes>
+        <Route path="/" element={<DrawerAppBar />} />
+        <Route path="/Image Cropper" element={<ImageCropper />} />
+        <Route path="Image Merger" element={<Homepage />} />
+        <Route path="/merge" element={<Homepage />} />
+        <Route path="/crop" element={<ImageCropper />} />
+        <Route path="/imgeditor" element={<Imageeditor />} />
+        <Route path="/temeditor" element={<Templateeditor />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </div>
   );
 }
 

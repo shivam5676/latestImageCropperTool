@@ -5,12 +5,12 @@ function Imageprovider(props) {
   const initialData = {
     editedImage: [],
     mergedImages: [],
+    croppedImages: [],
     rowColState: {},
   };
   const [imgState, setImgState] = useState(initialData);
 
   const addToEditedImageHandler = (imgurl) => {
-    console.log(imgurl);
     const obj = {
       imageUrl: imgurl,
     };
@@ -20,20 +20,32 @@ function Imageprovider(props) {
       return { ...prevImgState, editedImage: updatedEditedImage };
     });
   };
-  const addToMergedImagesHandler = () => {};
+  const addToMergedImagesHandler = (imgurl) => {};
+  const addToCroppedImagesHandler = (imgurl) => {
+    const obj = {
+      imageUrl: imgurl,
+    };
+    const updatedEditedImage = [...imgState.croppedImages];
+    updatedEditedImage.push(obj);
+    setImgState((prevImgState) => {
+      return { ...prevImgState, croppedImages: updatedEditedImage };
+    });
+  };
   const setRowColStateHandler = (value) => {
-    const obj={...value}
+    const obj = { ...value };
     const updatedObj = obj.rowData;
     setImgState((item) => {
-      return { ...item, rowColState: updatedObj};
+      return { ...item, rowColState: updatedObj };
     });
   };
   const imgContext = {
     editedImage: imgState.editedImage,
     mergedImages: imgState.mergedImages,
     rowColState: imgState.rowColState,
+    croppedImages: imgState.croppedImages,
     addToEditedImage: addToEditedImageHandler,
     addToMergedImages: addToMergedImagesHandler,
+    addToCroppedImages: addToCroppedImagesHandler,
     setRowColState: setRowColStateHandler,
   };
   return (
